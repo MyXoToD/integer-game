@@ -1,0 +1,28 @@
+{
+  "version": "0.1",
+  "name": "Integer - The Number Game",
+  "description": "Integer is a simple and minimalist number game.",
+  "launch_path": "/integer-game/index.html",
+  "orientation": ["portrait-primary"],
+  "icons": {
+    "30": "/assets/images/icons/icon-30.png",
+    "60": "/assets/images/icons/icon-60.png",
+    "90": "/assets/images/icons/icon-90.png",
+    "120": "/assets/images/icons/icon-120.png",
+    "128": "/assets/images/icons/icon-128.png"
+  },
+  "developer": {
+    "name": "Max Boll",
+    "url": "http://myxotod.com"
+  },
+  "fullscreen": "true",
+  "default_locale": "en",
+  "locales": {
+    "de": {
+      "description": "Integer ist ein einfaches und minimalistisches Zahlen-Spiel.",
+      "developer": {
+        "url": "http://myxotod.de/"
+      }
+    }
+  }
+}
