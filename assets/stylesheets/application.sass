@@ -8,6 +8,11 @@ $color3: #4E533D
   font-weight: normal
   font-style: normal
 
+@mixin vendor($a, $v)
+  #{$a}: $v
+  -moz-#{$a}: $v
+  -webkit-#{$a}: $v
+
 *
   margin: 0
   padding: 0
@@ -27,6 +32,7 @@ body
   height: 480px
   overflow-x: hidden
   overflow-y: scroll
+  position: relative
   background-color: $color1
   section
     display: none
@@ -62,3 +68,36 @@ body
         h2
           font-size: 1em
           color: $color2
+    &.game
+      .level
+        height: 30px
+        padding: 0 20px
+      .display
+        height: 70px
+        width: 100%
+        position: relative
+        background-color: $color2
+        line-height: 70px
+        margin: 20px 0
+        font-size: 1.5em
+        letter-spacing: 0.05em
+        &:before
+          content: ">"
+          padding: 0 20px
+          height: 70px
+      .buttons
+        width: 300px
+        height: 300px
+        padding: 10px
+        position: absolute
+        bottom: 0
+        .btn-number
+          width: 80px
+          height: 80px
+          margin: 10px
+          line-height: 80px
+          text-align: center
+          border: 2px dotted $color2
+          float: left
+          cursor: pointer
+          @include vendor(box-sizing, border-box)

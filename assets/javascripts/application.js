@@ -8,20 +8,54 @@
 
   app = {
     current_section: "menu",
+    current_level: 1,
+    starting_speed: 5,
     init: function() {
       this.bind_events();
       return this.play_sound("8bit");
     },
     bind_events: function() {
-      return $(document).on("click", ".btn-switch-section", function(e) {
+      $(document).on("click", ".btn-switch-section", function(e) {
         e.preventDefault();
         return app.switch_section($(this).data("section"));
+      });
+      return $(document).on("click", ".btn-number", function(e) {
+        e.preventDefault();
+        return app.remove_numbers($(this).text());
       });
     },
     switch_section: function(section) {
       $("." + this.current_section).hide();
       $("." + section).show();
-      return this.current_section = section;
+      this.current_section = section;
+      switch (this.current_section) {
+        case "game":
+          return this.prepare_game();
+      }
+    },
+    prepare_game: function() {
+      this.current_level = 1;
+      $(".level span").text(this.current_level);
+      $(".display").html("");
+      return this.start_game();
+    },
+    start_game: function() {
+      return this.add_random_number();
+    },
+    remove_numbers: function(number) {
+      var current_display, new_display, regex;
+      current_display = $(".display").text();
+      regex = new RegExp(number, "g");
+      new_display = current_display.replace(regex, "");
+      return $(".display").text(new_display);
+    },
+    add_random_number: function() {
+      var current_speed;
+      $(".display").append(this.get_random_number());
+      current_speed = (this.starting_speed * 1000) / this.current_level;
+      return setTimeout((function() {
+        return app.add_random_number();
+      }), current_speed);
     },
     play_sound: function(sound) {
       var audioElement;
@@ -33,6 +67,9 @@
       return audioElement.addEventListener("load", (function() {
         return audioElement.play();
       }), true);
+    },
+    get_random_number: function() {
+      return Math.floor((Math.random() * 9) + 1);
     }
   };
 
